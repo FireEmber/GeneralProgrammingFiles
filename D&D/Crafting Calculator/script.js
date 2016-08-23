@@ -107,7 +107,7 @@ $(document).ready(function () {
 		if(TTwenty){TB = 20;}
 		
 		//Ideal Craft Time Calculations
-		ICT = (ICP * 100) / (DC * (CB + TB));
+		ICT = (ICP * 100) / (TDC * (CB + TB));
 		if(!WC){
 			TID = Math.ceil(ICT);
 		}else{
@@ -124,7 +124,7 @@ $(document).ready(function () {
 		//Calculations for the Crafting Success Rate
 		//In the 3.5 Ruleset, there is either a 100% or 0% chance to successfully craft
 		if(TTen){
-			if(10 + CB >= DC){
+			if(10 + CB >= TDC){
 				CSRTF = 100;
 				CSRPTP = 100;
 			}else{
@@ -132,7 +132,7 @@ $(document).ready(function () {
 				CSRPTP = 0;	
 			}
 		}else if(TTwenty){
-			if(20 + CB >= DC){
+			if(20 + CB >= TDC){
 				CSRTF = 100;
 				CSRPTP = 100;
 			}else{
@@ -140,7 +140,7 @@ $(document).ready(function () {
 				CSRPTP = 0;	
 			}
 		}else{
-			if(20 + CB >= DC){
+			if(20 + CB >= TDC){
 				CSRTF = 100;
 				CSRPTP = Math.floor(Math.pow((DC - CB)/20,TID));
 			}else{
