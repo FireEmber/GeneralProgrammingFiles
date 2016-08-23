@@ -39,7 +39,9 @@ $(document).ready(function () {
 		$("#timeApproxamateOutputHours").text("0 Hours");
 		$("#timeApproxamateOutputMinutes").text("0 Minutes");
 		$("#timeApproxamateOutputSeconds").text("0 Seconds");
-		$("#successRateOutput").text("100%");
+		$("#successRateToFinishOutput").text("100% Chance to Finish");
+		$("#successRatePerTimePeriodOutput").text("100% Chance to Make Progress");
+		
 		updateOutput();
 	}
 	
@@ -144,14 +146,14 @@ $(document).ready(function () {
 			if(20 + CB >= TDC){
 				console.log(CB + " | " + TDC + " | " + TID);
 				CSRTF = 100;
-				CSRPTP = Math.floor(Math.pow((TDC - CB)/20,TID));
+				CSRPTP = Math.floor(Math.pow(Math.min(20,20 - DC + CB)/20,TID));
 			}else{
 				CSRTF = 0;
 				CSRPTP = 0;	
 			}
 		}
-		$("#successRateToFinishOutput").text(CSRTF + "%");
-		$("#successRatePerTimePeriodOutput").text(CSRPTP + "%");
+		$("#successRateToFinishOutput").text(CSRTF + "% Chance to Finish");
+		$("#successRatePerTimePeriodOutput").text(CSRPTP + "% Chance to Make Progress");
 	}
 	
 	function calcRulesetHB1(){
