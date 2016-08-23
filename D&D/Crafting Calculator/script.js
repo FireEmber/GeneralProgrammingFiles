@@ -54,6 +54,7 @@ $(document).ready(function () {
 	};
 	
 	function calcRulesetPHB(){
+		//All the variables associated with the forum
 		var BPMod = 1;
 		var BP = document.getElementById("itemBasePrice").value;
 		var CSP = document.getElementById("basePriceSP").checked;
@@ -66,6 +67,7 @@ $(document).ready(function () {
 		var DC = document.getElementById("itemCraftDC").value;
 		var ICT = 0;
 		var ID = 0;
+		var TID = 0;
 		var IH = 0;
 		var IM = 0;
 		var IS = 0;
@@ -80,7 +82,11 @@ $(document).ready(function () {
 		var AH = 0;
 		var AM = 0;
 		var AS = 0;
-		var CSR = 100;
+		var CC = 0;
+		var CSRTF = 100;
+		var CSRPTP = 100;
+		
+		//Calculations used to find the Crafting Cost of the item.
 		if(CSP){BPMod = 10;}
 		if(CCP){BPMod = 100;}
 		var ICP = Math.floor((100 * BP)/(3 * BPMod)) / 100;
@@ -94,7 +100,14 @@ $(document).ready(function () {
 		}
 		if(TTen){TB = 10;}
 		if(TTwenty){TB = 20;}
+		
+		//Ideal Craft Time Calculations
 		ICT = (ICP * 100) / (DC * (CB + TB));
+		if(!WC){
+			TID = Math.ceil(ICT);
+		}else{
+			TID = Math.ceil(ITC / 10);
+		}
 		$("#timeIdealOutputDays").text(Math.floor(ICT) + " Days");
 		ICT = (ICT - Math.floor(ICT)) * 8;
 		$("#timeIdealOutputHours").text(Math.floor(ICT) + " Hours");
@@ -102,6 +115,36 @@ $(document).ready(function () {
 		$("#timeIdealOutputMinutes").text(Math.floor(ICT) + " Minutes");
 		ICT = (ICT - Math.floor(ICT)) * 60;
 		$("#timeIdealOutputSeconds").text(Math.floor(ICT) + " Seconds");
+		
+		//Calculations for the Crafting Success Rate
+		//In the 3.5 Ruleset, there is either a 100% or 0% chance to successfully craft
+		if(TTen){
+			if(10 + CC >= DC){
+				CSRTF = 100;
+				CSRPTP = 100;
+			}else{
+				CSRTF = 0;
+				CSRPTP = 0;	
+			}
+		}else if(TTwenty){
+			if(20 + CC >= DC){
+				CSRTF = 100;
+				CSRPTP = 100;
+			}else{
+				CSRTF = 0;
+				CSRPTP = 0;	
+			}
+		}else{
+			if(20 + CC >= DC){
+				CSRTF = 100;
+				CSRPTP = Math.floor(Math.pow((DC - CC)/20,TID));
+			}else{
+				CSRTF = 0;
+				CSRPTP = 0;	
+			}
+		}
+		$("#successRateToFinishOutput").text(CSRTF + "%");
+		$("#successRatePerTimePeriodOutput").text(CSRPTP + "%");
 	}
 	
 	function calcRulesetHB1(){
