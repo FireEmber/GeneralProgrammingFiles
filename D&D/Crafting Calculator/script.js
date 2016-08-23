@@ -112,7 +112,7 @@ $(document).ready(function () {
 		if(!WC){
 			TID = Math.ceil(ICT);
 		}else{
-			TID = Math.ceil(ITC / 10);
+			TID = Math.ceil(ICT / 10);
 		}
 		$("#timeIdealOutputDays").text(Math.floor(ICT) + " Days");
 		ICT = (ICT - Math.floor(ICT)) * 8;
