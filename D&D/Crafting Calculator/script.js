@@ -98,6 +98,7 @@ $(document).ready(function () {
 		}else{
 			$("#craftingCostXPOutput").text("0 XP");
 		}
+		TB = DC - CB;
 		if(TTen){TB = 10;}
 		if(TTwenty){TB = 20;}
 		
