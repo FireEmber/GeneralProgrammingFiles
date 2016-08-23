@@ -119,7 +119,7 @@ $(document).ready(function () {
 		//Calculations for the Crafting Success Rate
 		//In the 3.5 Ruleset, there is either a 100% or 0% chance to successfully craft
 		if(TTen){
-			if(10 + CC >= DC){
+			if(10 + CB >= DC){
 				CSRTF = 100;
 				CSRPTP = 100;
 			}else{
@@ -127,7 +127,7 @@ $(document).ready(function () {
 				CSRPTP = 0;	
 			}
 		}else if(TTwenty){
-			if(20 + CC >= DC){
+			if(20 + CB >= DC){
 				CSRTF = 100;
 				CSRPTP = 100;
 			}else{
@@ -135,9 +135,9 @@ $(document).ready(function () {
 				CSRPTP = 0;	
 			}
 		}else{
-			if(20 + CC >= DC){
+			if(20 + CB >= DC){
 				CSRTF = 100;
-				CSRPTP = Math.floor(Math.pow((DC - CC)/20,TID));
+				CSRPTP = Math.floor(Math.pow((DC - CB)/20,TID));
 			}else{
 				CSRTF = 0;
 				CSRPTP = 0;	
