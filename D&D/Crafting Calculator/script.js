@@ -64,7 +64,8 @@ $(document).ready(function () {
 		var SP = 0;
 		var CP = 0;
 		var XP = 0;
-		var DC = document.getElementById("itemCraftDC").value;
+		var IDC = document.getElementById("itemCraftDC").value;
+		var TDC = IDC;
 		var ICT = 0;
 		var ID = 0;
 		var TID = 0;
@@ -85,6 +86,10 @@ $(document).ready(function () {
 		var CC = 0;
 		var CSRTF = 100;
 		var CSRPTP = 100;
+		
+		if(ATen){
+			TDC += 10;
+		}
 		
 		//Calculations used to find the Crafting Cost of the item.
 		if(CSP){BPMod = 10;}
