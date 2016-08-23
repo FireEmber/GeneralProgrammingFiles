@@ -103,6 +103,7 @@ $(document).ready(function () {
 		}else{
 			$("#craftingCostXPOutput").text("0 XP");
 		}
+		TB = TDC - CB;
 		if(TTen){TB = 10;}
 		if(TTwenty){TB = 20;}
 		
@@ -141,8 +142,9 @@ $(document).ready(function () {
 			}
 		}else{
 			if(20 + CB >= TDC){
+				console.log(CB + " | " + TDC);
 				CSRTF = 100;
-				CSRPTP = Math.floor(Math.pow((DC - CB)/20,TID));
+				CSRPTP = Math.floor(Math.pow((TDC - CB)/20,TID));
 			}else{
 				CSRTF = 0;
 				CSRPTP = 0;	
