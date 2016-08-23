@@ -146,7 +146,7 @@ $(document).ready(function () {
 			if(20 + CB >= TDC){
 				console.log(CB + " | " + TDC + " | " + TID);
 				CSRTF = 100;
-				CSRPTP = Math.floor(Math.pow(Math.min(20,20 - TDC + CB)*100,TID));
+				CSRPTP = Math.floor(Math.pow(Math.min(20,20 - TDC + CB)/20,TID)*100);
 			}else{
 				CSRTF = 0;
 				CSRPTP = 0;	
