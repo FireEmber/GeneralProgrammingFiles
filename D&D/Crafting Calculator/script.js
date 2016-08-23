@@ -142,7 +142,7 @@ $(document).ready(function () {
 			}
 		}else{
 			if(20 + CB >= TDC){
-				console.log(CB + " | " + TDC);
+				console.log(CB + " | " + TDC + " | " + TID);
 				CSRTF = 100;
 				CSRPTP = Math.floor(Math.pow((TDC - CB)/20,TID));
 			}else{
