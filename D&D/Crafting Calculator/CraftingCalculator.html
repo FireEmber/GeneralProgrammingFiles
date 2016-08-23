@@ -1,0 +1,101 @@
+<html>
+<head>
+	<title>D&D 3.5 Crafing Calculator</title>
+	<link rel='stylesheet' type='text/css' href='stylesheet.css'/>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+	<div id="banner">
+		<div id="title">Crafting Calculator by Mahov Sven for D&D 3.5e</div>
+	</div>
+	<div id="outputContainer">
+		<div id="craftingCost">
+			<div class="outputText" style="border-bottom:2px solid #555555">Cost to Craft the Item</div>
+			<div class="outputText" id="craftingCostGPOutput" style="height:30px;"></div>
+			<div class="outputText" id="craftingCostSPOutput" style="height:30px;"></div>
+			<div class="outputText" id="craftingCostCPOutput" style="height:30px;"></div>
+			<div class="outputText" id="craftingCostXPOutput" style="height:30px;"></div>
+		</div>
+		
+		<div id="craftTimeIdeal">
+			<div class="outputText" style="border-bottom:2px solid #555555">Ideal Time to Craft</div>
+			<div class="outputText" id="timeIdealOutputDays" style="height:30px;"></div>
+			<div class="outputText" id="timeIdealOutputHours" style="height:30px;"></div>
+			<div class="outputText" id="timeIdealOutputMinutes" style="height:30px;"></div>
+			<div class="outputText" id="timeIdealOutputSeconds" style="height:30px;"></div>
+			<div style="font-size:10px; padding: 2px;">Based on 1 day = 8 hours of work</div>
+			<div style="font-size:10px; padding: 2px;">Approxamate time for 100% success rate.</div>
+		</div>
+		
+		<div id="craftTimeApproxamate">
+			<div class="outputText" style="border-bottom:2px solid #555555">Approxamate Time to Craft</div>
+			<div class="outputText" id="timeApproxamateOutputDays" style="height:30px;"></div>
+			<div class="outputText" id="timeApproxamateOutputHours" style="height:30px;"></div>
+			<div class="outputText" id="timeApproxamateOutputMinutes" style="height:30px;"></div>
+			<div class="outputText" id="timeApproxamateOutputSeconds" style="height:30px;"></div>
+			<div style="font-size:10px; padding: 2px;">Approxamate time adjusted for success rate.</div>
+		</div>
+		
+		<div id="successRate">
+			<div class="outputText" style="border-bottom:2px solid #555555">Crafting Success Rate</div>
+			<div class="outputText" id="successRateOutput" style="height:30px;"></div>
+		</div>
+		
+		<div id="resetButton">Reset</div>
+	</div>
+	<form accept-charset="UTF-8" action="#" autocomplete="off" style="padding: 1px">
+		<br>
+		<div class="sectionHeader">Ruleset</div>
+		<input type="radio" class="input" name="ruleset" id="rulesetPHB">
+			<span title="The ruleset from the 3.5 Player's Handbook. Click to view details.">Core PHB</span>
+		<input type="radio" class="input" name="ruleset" id="rulesetHB1">
+			<span title="A homebrew ruleset variant by Mahov Sven. Click to view details.">HB Variant 1</span>
+		<input type="radio" class="input" name="ruleset" id="rulesetHB2">
+			<span title="A homebrew ruleset variant by Mahov Sven. Click to view details.">HB Variant 2</span>
+		
+		
+		<br><br>
+		<div class="sectionHeader">Character Stats</div>
+		<input type="number" class="input numInput" id="charCraftBonus">
+			<span title="The bonus to craft the character recieves. Include ability score, rank, and any other miscellaneous bonuses.">Craft Bonus</span>
+		
+		<br>
+		<input type="radio" class="input" name="takeBonus" id="charTakeTen">
+			<span title="Check this box if the character has the ability to take 10 on a craft check.">Take 10</span>
+		<input type="radio" class="input" name="takeBonus" id="charTakeTwenty">
+			<span title="Check this box if the character has the ability to take 20 on a craft check. This is normally impossible and requires homebrew rules to access.">Take 20</span>
+		
+		<br>
+		<input type="checkbox" class="input" id="charAddTen">
+			<span title="Check this box to add 10 to the DC which may increase the speed the item is crafted. Does not work for all rulesets.">+10 DC</span>
+		
+		<br>
+		<input type="radio" class="input" name="checkTime" id="checkDaily">
+			<span title="Check if the character makes a craft check daily.">Daily Check</span>
+		<input type="radio" class="input" name="checkTime" id="checkWeekly">
+			<span title="Check if the character makes a craft check weekly (every 10 days).">Weekly Check</span>
+		
+		
+		<br><br>
+		<div class="sectionHeader">Item Stats</div>
+		<input type="number" class="input numInput" id="itemCraftDC" min="1">
+			<span title="The Difficulty Class (DC) to craft the item.">Craft DC</span>
+		
+		<br>
+		<input type="number" class="input numInputLarge" id="itemBasePrice" min="1">
+			<span title="Cost for the item as if it was bought at the market">Base Price</span>
+			<input type="radio" class="input" name="basePrice" id="basePriceGP">
+				<span title="Check if the Base Price is in Gold Pieces (GP)">GP</span>
+			<input type="radio" class="input" name="basePrice" id="basePriceSP">
+				<span title="Check if the Base Price is in Silver Pieces (SP)">SP</span>
+			<input type="radio" class="input" name="basePrice" id="basePriceCP">
+				<span title="Check if the Base Price is in Copper Pieces (CP)">CP</span>
+		
+		<br>
+		<input type="checkbox" class="input" id="itemIsMagical">
+			<span title="Check this box if the item is magical. This includes any wands, magic armor and swords, wonderous items, or anything else magical.">Magic Item</span>
+	</form>
+</body>
+</html>
