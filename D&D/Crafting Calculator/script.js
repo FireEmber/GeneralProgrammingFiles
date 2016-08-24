@@ -40,7 +40,7 @@ $(document).ready(function () {
 		$("#timeApproxamateOutputMinutes").text("0 Minutes");
 		$("#timeApproxamateOutputSeconds").text("0 Seconds");
 		$("#successRateToFinishOutput").text("100% Chance to Finish");
-		$("#successRatePerTimePeriodOutput").text("100% Chance to Make Progress");
+		$("#successRatePerTimePeriodOutput").text("100% Chance to Craft Ideal");
 		
 		updateOutput();
 	}
@@ -55,10 +55,12 @@ $(document).ready(function () {
 		}
 	};
 	
+	//================================== CORE 3.5 RULESET CLACLULATIONS ==================================
+	
 	function calcRulesetPHB(){
 		//All the variables associated with the forum
 		var BPMod = 1;
-		var BP = document.getElementById("itemBasePrice").value;
+		var BP = Number(document.getElementById("itemBasePrice").value);
 		var CSP = document.getElementById("basePriceSP").checked;
 		var CCP = document.getElementById("basePriceCP").checked;
 		var MI = document.getElementById("itemIsMagical").checked;
@@ -66,7 +68,7 @@ $(document).ready(function () {
 		var SP = 0;
 		var CP = 0;
 		var XP = 0;
-		var IDC = document.getElementById("itemCraftDC").value;
+		var IDC = Number(document.getElementById("itemCraftDC").value);
 		var TDC = IDC;
 		var ICT = 0;
 		var ID = 0;
@@ -74,7 +76,8 @@ $(document).ready(function () {
 		var IH = 0;
 		var IM = 0;
 		var IS = 0;
-		var CB = document.getElementById("charCraftBonus").value;
+		var CB = Number(document.getElementById("charCraftBonus").value);
+		var MCheck = document.getElementById("charMakeCheck").checked;
 		var TTen = document.getElementById("charTakeTen").checked;
 		var TTwenty = document.getElementById("charTakeTwenty").checked;
 		var TB = 0
@@ -86,6 +89,7 @@ $(document).ready(function () {
 		var AM = 0;
 		var AS = 0;
 		var CC = 0;
+		var CR = 10;
 		var CSRTF = 100;
 		var CSRPTP = 100;
 		
@@ -110,7 +114,7 @@ $(document).ready(function () {
 		if(TTwenty){TB = 20;}
 		
 		//Ideal Craft Time Calculations
-		ICT = (ICP * 100) / (TDC * (CB + TB));
+		ICT = (ICP * 100) / (TDC * (TDC + 9));
 		if(!WC){
 			TID = Math.ceil(ICT);
 		}else{
@@ -127,38 +131,66 @@ $(document).ready(function () {
 		//Calculations for the Crafting Success Rate
 		//In the 3.5 Ruleset, there is either a 100% or 0% chance to successfully craft
 		if(TTen){
-			if(10 + CB >= TDC){
+			CR = 10;
+			CC = CR + CB;
+			
+			if(CC >= TDC){
 				CSRTF = 100;
 				CSRPTP = 100;
 			}else{
 				CSRTF = 0;
-				CSRPTP = 0;	
+				CSRPTP = 0;
+				CC = 0;
 			}
 		}else if(TTwenty){
+			CR = 20;
+			CC = CR + CB;
+			
+			if(CC >= TDC){
+				CSRTF = 100;
+				CSRPTP = 100;
+			}else{
+				CSRTF = 0;
+				CSRPTP = 0;
+				CC = 0;
+			}
+		}else{
+			CR = (20 + TDC - CB)/2
+			console.log(21 - TDC + CB);
+			CC = CR + CB
+			
 			if(20 + CB >= TDC){
 				CSRTF = 100;
 				CSRPTP = 100;
 			}else{
 				CSRTF = 0;
-				CSRPTP = 0;	
-			}
-		}else{
-			if(20 + CB >= TDC){
-				console.log(CB + " | " + TDC + " | " + TID);
-				CSRTF = 100;
-				CSRPTP = Math.floor(Math.pow(Math.min(20,20 - TDC + CB)/20,TID)*100);
-			}else{
-				CSRTF = 0;
-				CSRPTP = 0;	
+				CSRPTP = 0;
+				CC = 0;
 			}
 		}
+		
+		ACT = ((ICP * 100) / (TDC * CC))*(20/Math.min(20,21 - TDC + CB));
+		var tempACT = ACT;
+		$("#timeApproxamateOutputDays").text(Math.floor(ACT) + " Days");
+		ACT = (ACT - Math.floor(ACT)) * 8;
+		$("#timeApproxamateOutputHours").text(Math.floor(ACT) + " Hours");
+		ACT = (ACT - Math.floor(ACT)) * 60 + .0000000000001;
+		$("#timeApproxamateOutputMinutes").text(Math.floor(ACT) + " Minutes");
+		ACT = (ACT - Math.floor(ACT)) * 60;
+		$("#timeApproxamateOutputSeconds").text(Math.floor(ACT) + " Seconds");
+		
+		if(MCheck){CSRPTP = Math.ceil(Math.pow(Math.min(20,21 - TDC + CB)/20,Math.ceil(tempACT))*100);};
 		$("#successRateToFinishOutput").text(CSRTF + "% Chance to Finish");
-		$("#successRatePerTimePeriodOutput").text(CSRPTP + "% Chance to Make Progress");
+		$("#successRatePerTimePeriodOutput").text(CSRPTP + "% Chance to Craft Ideal");
 	}
+	
+	//================================== HOMEBREW 1 RULESET CLACLULATIONS ==================================
 	
 	function calcRulesetHB1(){
 		
 	}
+	
+	//================================== HOMEBREW 2 RULESET CLACLULATIONS ==================================
 	
 	function calcRulesetHB2(){
 		
