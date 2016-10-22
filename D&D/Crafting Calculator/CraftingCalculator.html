@@ -72,7 +72,7 @@
 		
 		<br>
 		<input type="checkbox" class="input" id="charAddTen">
-			<span title="Check this box to add 10 to the DC which may increase the speed the item is crafted. Does not work for all rulesets.">+10 DC</span>
+			<span id="charAddTenText" title="Check this box to add 10 to the DC which may increase the speed the item is crafted. Does not work for all rulesets.">+10 DC</span>
 		
 		<br>
 		<input type="radio" class="input" name="checkTime" id="checkDaily">
@@ -87,6 +87,12 @@
 			<span title="The Difficulty Class (DC) to craft the item.">Craft DC</span>
 		
 		<br>
+		<input type="checkbox" class="input" id="craftConstantDC">
+			<span id="craftConstantDCText" title="Check this box to make the Craft Constant equal to the DC of the item.">DC</span>
+		<input type="number" class="input numInput" id="craftConstant" min="1">
+			<span id="craftConstantText" title="The Constant which affects the time it takes to craft an item. Set by the DM.">Craft Constant</span>
+		
+		<br>	
 		<input type="number" class="input numInputLarge" id="itemBasePrice" min="1">
 			<span title="Cost for the item as if it was bought at the market">Base Price</span>
 			<input type="radio" class="input" name="basePrice" id="basePriceGP">
