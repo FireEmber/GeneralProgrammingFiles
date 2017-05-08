@@ -1,0 +1,159 @@
+<html>
+<head>
+	<title>D&D 3.5 HB Item DC Calculator</title>
+	<link rel='stylesheet' type='text/css' href='stylesheet.css'/>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+	<div id="banner">
+		<div id="title">Item DC Calculator by Mahov Sven for D&D 3.5e</div>
+	</div>
+	<div id="outputContainer">
+		<div id="outputDCContainer">
+			<div class="outputText" style="border-bottom:2px solid #555555">Total DC</div>
+			<div class="outputText" id="outputDC" style="height:30px;"></div>
+		</div>
+		
+		<div id="outputCostDividerContainer">
+			<div class="outputText" style="border-bottom:2px solid #555555">Cost Per Object Divider</div>
+			<div class="outputText" id="outputCostDivider" style="height:30px;"></div>
+		</div>
+		
+		<div id="outputTotalObjectsMultiplierContainer">
+			<div class="outputText" style="border-bottom:2px solid #555555">Total Objects Multiplier</div>
+			<div class="outputText" id="outputTotalObjectsMultiplier" style="height:30px;"></div>
+		</div>
+		
+		<div id="resetButton">Reset</div>
+	</div>
+	<form accept-charset="UTF-8" action="#" autocomplete="off" style="padding: 1px">
+		<br>
+		<div class="sectionHeader">Base DC (Volume of Required Material)</div>
+		<input type="number" class="input numInput" id="itemVolume" min="1">
+		<input type="radio" class="input" name="volume" id="volumeCubicFeet">
+			<span title="A homebrew ruleset variant by Mahov Sven.">Cubic Feet</span>
+		<input type="radio" class="input" name="volume" id="volumeGallons">
+			<span title="A homebrew ruleset variant by Mahov Sven.">Gallons</span>
+		
+		
+		<br><br>
+		<!--	Templates
+		<input type="checkbox" class="input" id="id">
+			<span title="description">description</span>
+		
+		<br>
+		
+		<input type="number" class="input numInput" id="id" min="0">
+			<span title="description">description</span>
+		
+		<br>
+		-->
+		<div class="sectionHeader">Additional Object Complexity Modifiers</div>
+		<input type="checkbox" class="input" id="notYetCrafted">
+			<span title="description">Object not yet Crafted by Crafter</span>
+		
+		<br>
+		<input type="checkbox" class="input" id="fineDetails">
+			<span title="description">Fine Details</span>
+		
+		<br>
+		<input type="checkbox" class="input" id="toolArmorWeapon">
+			<span title="description">Tool/Armor/Weapon</span>
+		
+		<br>
+		<input type="checkbox" class="input" id="parts">
+			<span title="description">Multiple Parts</span>
+		
+		<br>
+		<div id="partsContainer" class="tab">
+			<input type="number" class="input numInput" id="partsAmount" min="2">
+			<span title="description">Total Amount</span>
+		
+			<br>
+			<input type="checkbox" class="input" id="movingBending">
+			<span title="description">Moving/Bending Parts</span>
+		
+			<br>
+			<input type="checkbox" class="input" id="removePartsDC">
+			<span title="description">Remove Parts DC</span>
+		
+			<br>
+		</div>
+		<input type="checkbox" class="input" id="masterwork">
+			<span title="description">Masterwork</span>
+		
+		<br>
+		<input type="checkbox" class="input" id="specialMaterialsQualities">
+			<span title="description">Weapon Materials and Qualities</span>
+		
+		<br>
+		<div id="specialMaterialsQualitiesContainer" class="tab">
+			<input type="number" class="input numInput" id="specialMaterialsQualitiesAmount" min="0">
+			<span title="description">Total Amount</span>
+		
+			<br>
+		</div>
+		<input type="checkbox" class="input" id="plantFlesh">
+			<span title="description">Created with Plant Matter or Flesh</span>
+		
+		<br>
+		<input type="checkbox" class="input" id="unknown">
+			<span title="description">Unknown Object</span>
+		
+		<br>
+		<input type="checkbox" class="input" id="animated">
+			<span title="description">*Animated</span>
+		
+		<br>
+		<input type="checkbox" class="input" id="intelligent">
+			<span title="description">*Intelligent</span>
+		
+		<br>
+		<span class="smallText" title="description">*These items may require feats to craft.</span>
+		
+		<br><br>
+		<div class="sectionHeader">Additional Spell Component Modifiers</div>
+		<input type="number" class="input numInput" id="cantrips" min="0">
+			<span title="description">Cantrip Spells</span>
+		
+		<br>
+		<input type="number" class="input numInput" id="spell1" min="0">
+			<span title="description">1st Level Spells</span>
+		
+		<br>
+		<input type="number" class="input numInput" id="spell2" min="0">
+			<span title="description">2nd Level Spells</span>
+		
+		<br>
+		<input type="number" class="input numInput" id="spell3" min="0">
+			<span title="description">3rd Level Spells</span>
+		
+		<br>
+		<input type="number" class="input numInput" id="spell4" min="0">
+			<span title="description">4th Level Spells</span>
+		
+		<br>
+		<input type="number" class="input numInput" id="spell5" min="0">
+			<span title="description">5th Level Spells</span>
+		
+		<br>
+		<input type="number" class="input numInput" id="spell6" min="0">
+			<span title="description">6th Level Spells</span>
+		
+		<br>
+		<input type="number" class="input numInput" id="spell7" min="0">
+			<span title="description">7th Level Spells</span>
+		
+		<br>
+		<input type="number" class="input numInput" id="spell8" min="0">
+			<span title="description">8th Level Spells</span>
+		
+		<br>
+		<input type="number" class="input numInput" id="spell9" min="0">
+			<span title="description">9th Level Spells</span>
+		
+	</form>
+</body>
+</html>

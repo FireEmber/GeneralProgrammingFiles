@@ -262,7 +262,7 @@ $(document).ready(function () {
 		if(TTwenty){TB = 20;}
 		
 		//Ideal Craft Time Calculations
-		var BPGP = BP * BPMod;
+		var BPGP = BP / BPMod;
 		triDigit = Math.max(0, Math.floor(Math.log10(BPGP) - 1));
 		ICT = 	CK * getDigit(BPGP,Math.max(2,Math.floor(Math.log10(BPGP))+1))/10 +
 				CK * getDigit(BPGP,Math.max(1,Math.floor(Math.log10(BPGP))))/80 +
